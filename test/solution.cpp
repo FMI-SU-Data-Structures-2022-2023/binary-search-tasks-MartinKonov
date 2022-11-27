@@ -97,3 +97,97 @@ TEST_CASE("Validate remove") {
 
     clean(test);
 }
+
+
+TEST_CASE("Validate delGreaterThanX") {
+
+    Node* test = new Node(17);
+    test->left = new Node(15);
+    test->left->left = new Node(9);
+    test->left->left->left = new Node(5);
+    test->right = new Node(72);
+    test->right->right = new Node(79);
+    test->right->right->right = new Node(80);
+    test->right->right->right->right = new Node(90);
+    test->right->right->right->right->right = new Node(98);
+    test->right->right->right->right->right = new Node(95);
+    test->right->left = new Node(67);
+    test->right->left->left = new Node(59);
+    test->right->left->left->left = new Node(45);
+    test->right->left->left->left->left = new Node(36);
+    test = delGreaterThanX(test, 9);
+    CHECK(isContains(test,59) == false);
+    CHECK(isContains(test, 67) == false);
+    CHECK(isContains(test, 72) == false);
+    CHECK(isContains(test, 79) == false);
+    CHECK(isContains(test, 80) == false);
+    CHECK(isContains(test, 90) == false);
+    CHECK(isContains(test, 98) == false);
+    CHECK(isContains(test, 95) == false);
+
+    clean(test);
+}
+
+
+TEST_CASE("Validate section") {
+
+    Node* test = new Node(17);
+    test->left = new Node(15);
+    test->left->left = new Node(9);
+    test->left->left->left = new Node(5);
+    test->right = new Node(72);
+    test->right->right = new Node(79);
+    test->right->right->right = new Node(80);
+    test->right->right->right->right = new Node(90);
+    test->right->right->right->right->right = new Node(98);
+    test->right->right->right->right->right = new Node(95);
+    test->right->left = new Node(67);
+    test->right->left->left = new Node(59);
+    test->right->left->left->left = new Node(45);
+    test->right->left->left->left->left = new Node(36);
+
+
+    Node* test2 = new Node(17);
+    test2->left = new Node(15);
+    test2->left->left = new Node(9);
+    test2->left->left->left = new Node(5);
+    test2->right = new Node(72);
+    test2->right->right = new Node(79);
+    test2->right->right->right = new Node(80);
+    test2->right->right->right->right = new Node(90);
+    test2->right->right->right->right->right = new Node(98);
+
+    Node* totest = section(test, test2);
+
+    CHECK(isContains(totest, 95) == false);
+    CHECK(isContains(totest, 67) == false);
+    CHECK(isContains(totest, 59) == false);
+    CHECK(isContains(totest, 45) == false);
+    CHECK(isContains(totest, 36) == false);
+
+    clean(test);
+}
+
+TEST_CASE("Validate areCousins") {
+
+    Node* test = new Node(17);
+    test->left = new Node(15);
+    test->left->left = new Node(9);
+    test->left->left->left = new Node(5);
+    test->right = new Node(72);
+    test->right->right = new Node(79);
+    test->right->right->right = new Node(80);
+    test->right->right->right->right = new Node(90);
+    test->right->right->right->right->right = new Node(98);
+    test->right->right->right->right->right = new Node(95);
+    test->right->left = new Node(67);
+    test->right->left->left = new Node(59);
+    test->right->left->left->left = new Node(45);
+    test->right->left->left->left->left = new Node(36);
+
+    CHECK(areCousins(test, 15, 72) == false);
+    CHECK(areCousins(test, 9, 67) == true);
+    CHECK(areCousins(test, 5, 80) == true);
+    CHECK(areCousins(test, 15, 95) == false);
+
+}
